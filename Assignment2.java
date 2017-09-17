@@ -1,3 +1,4 @@
+//Tingyuan ZHANG
 import java.util.HashMap;
 
 public class Assignment2 {
@@ -14,55 +15,52 @@ public class Assignment2 {
 		//3.
 		//new Assignment2().printPerfectNumbers(10000);
 		
-		//6.
+		//6. EXTRA CREDIT
 		//new Assignment2().printIsoscelesTriangle(7);
 		
 
 
 		//Sum up pizza costs
-		Pizza pizza1 =  new Pizza("Pepperoni", 5.49, 100);
-		Pizza pizza2 = new Pizza("Garden Fresh", 4.99, 50);
-		Pizza pizza3 = new Pizza("The Meats", 5.99, 150);
+		//Problem: Since the double and float are not accurate, we could use 
+		//BigDecimal under math library to deal with the fraction or simply format the number to 2 decimals
+		//Here is just an example of process so that I just use simaple doubles
+		Pizza pizza1 =  new Pizza("Pepperoni", 5.5, 100);
+		Pizza pizza2 = new Pizza("Garden Fresh", 4.5, 50);
+		Pizza pizza3 = new Pizza("The Meats", 6.0, 150);
 
 		HashMap<String, Integer> ordered = new HashMap<String, Integer>();
-		ordered.put("Pepperoni", 2);
-		ordered.put("Garden Fresh", 1);
-		ordered.put("The Meats", 2);
+		ordered.put(pizza1.getPizzaType(), 2);
+		ordered.put(pizza2.getPizzaType(), 1);
+		ordered.put(pizza3.getPizzaType(), 2);
 
-		System.out.println(pizza1.getPizzaType());
 		Customer ryan = new Customer ("Ryan", ordered);
-		//HashMap<String, Integer> myPizza = ryan.getOrderedPizza(); 
-		//System.out.println(myPizza.get(pizza1.getPizzaType()));
 
 		double totalSpent = 0;
 		if (ryan.getOrderedPizza().get(pizza1.getPizzaType()) != null) {
-			System.out.println("11");
 			int num = ryan.getOrderedPizza().get(pizza1.getPizzaType());
 			double rate = pizza1.getUnitPrice();
-			System.out.println(rate + " " + num);
 			totalSpent += num * rate;
-			System.out.println(totalSpent);
+			System.out.println(ryan.getName() + " purchased" + " " + num + " "+ pizza1.getPizzaType() 
+				+ " for total $" + totalSpent + ".");
 		}
 
 		if (ryan.getOrderedPizza().get(pizza2.getPizzaType()) != null) {
-			System.out.println("22");
 			int num = ryan.getOrderedPizza().get(pizza2.getPizzaType());
 			double rate = pizza2.getUnitPrice();
-			System.out.println(rate + " " + num);
 			totalSpent += num * rate;
-			System.out.println(totalSpent);
+			System.out.println(ryan.getName() + " purchased" + " " + num + " " + pizza2.getPizzaType() 
+				+ " for total $" + totalSpent + ".");
 		}
 
 		if (ryan.getOrderedPizza().get(pizza3.getPizzaType()) != null) {
-			System.out.println("33");
 			int num = ryan.getOrderedPizza().get(pizza3.getPizzaType());
 			double rate = pizza3.getUnitPrice();
-			System.out.println(rate + " " + num);
 			totalSpent += num * rate;
-			System.out.println(totalSpent);
+			System.out.println(ryan.getName() + " purchased" + " " + num + " " + pizza3.getPizzaType() 
+				+ " for total $" + totalSpent + ".");
 		}
 		
-		System.out.println(totalSpent);
+		System.out.println(ryan.getName() + " spent total $" + totalSpent + ".");
 	}
 
 	/* 
@@ -151,9 +149,9 @@ public class Assignment2 {
 	ii. Constructor is needed. Extra-credit for 0.5 point if you write more than 1 right constructor for this class
 	
 	Q:
-		1. Can loyalty points have fractions?
-		2. What is a pizza type?
-		3. Do I need getter and setters?
+		1. Can loyalty points have fractions? Here I assume it is just an Integer
+		2. What is a pizza type? I used String as pizza types
+		3. Do I need getter and setters? I implemented getters and setters
 */
 
 class Pizza {
@@ -202,8 +200,12 @@ class Pizza {
 /*
 	5. Write a java class called customer (Add detail as needed) : 
 	i. Attributes needed: customer name and what pizzas customer has ordered. 
-	ii. Think about what kind of data structure will be used to record the pizza name and numbers for each kind of pizza.( Give me your thought, Extra credit for 1 point)
+	ii. Think about what kind of data structure will be used to record the pizza name and numbers for each kind of pizza.
+	( Give me your thought, Extra credit for 1 point)
 	iii. In main method , sum up how many the customer spend. 
+
+	To answer question ii, we can use a hashmap, pizza's name is key and number is value.
+	Alternatively, we can set Pizza object as a key, which is also working.
 */
 class Customer {
 	private String name;
