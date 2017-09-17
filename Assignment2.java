@@ -1,4 +1,4 @@
-//Tingyuan ZHANG
+/* Tingyuan ZHANG */
 import java.util.HashMap;
 
 public class Assignment2 {
