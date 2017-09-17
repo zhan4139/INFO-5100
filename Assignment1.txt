@@ -1,0 +1,404 @@
+/* Tingyuan ZHANG */
+
+
+1. Hiking
+	
+	1.1. Rent a ReachNow to drive to mountain rainier on weekends with friends
+	1.2. On the way, fill the gas
+	1.3. On the way, eat at restaurant for lunch
+	1.4. Buy the ticket to get into the park
+	1.5. Book a hotel or check in the hotel.
+
+Things:
+
+	Hiker:
+		Data: name, cash, creditCard
+		Behaviors: rentReachNow, drive, stopCar, fillGas, hungry, findRestaurant, orderFood, eatFood, buyTicket, hike, bookHotel, checkIn, checkOut, payInCash, payInCreditCard
+
+	CreditCard:
+		Data: bank, name, cardNumber, expirationDate, securityCode
+
+	CreditCardCompany:
+		Behavior : authorizeTransaction
+
+	ReachNowCars:
+		Data: location, model, price, gasolineStatus, rentStatus
+		Behaviors: reserved, running, stop
+
+	ReachNowCompany:
+		Behaviors: authorize, charge, refund, cancel
+
+	GasStation:
+		Data: gasPrice, food
+		Behaviors: authorize, charge
+
+	Restaurants:
+		Data: dishes, price
+		Behaviors: cook, charge, open, closed
+
+	Park:
+		Data: ticketPrice
+		Behaviors: authorize, charge, open, closed
+
+	Internet
+		Data : groupOfWebsites
+		Behaviors : searchForHotelWebsites 
+
+	ElectronicWebsite
+		Data : URL, hotels, BankAccount
+		Behaviors : search, sort, display, compare, placeTheOrder
+
+	Hotels:
+		Data: location, price, rooms
+		Behaviors: confirmation, checkID, provideRooms
+
+Hiking:
+
+	Hiker Ryan, Emma, Ellen
+	CreditCard visa,
+	CreditCardCompany chase,
+	ReachNowCars car,
+	ReachNowCompany rentalCompany,
+	GasStation shell,
+	Restaurant szechuan,
+	Park mountainRainier,
+	ElectronicWebsite hiltonWebsite
+	Hotels hilton
+
+	if mountainRainier.open
+		
+		Ryan.rentReachNow -> location, model, price : car
+		Ryan.drive
+
+		if car.rentStatus is reserved and car.gasolineStatus is not full
+			
+			Ryan.driveToGasStation -> shell
+			Ryan.stopCar
+			shell.authorize -> visa, zipCode : authorization
+			Loop 
+				Ryan.fillGas
+				if car.gasolineStatus is full
+					break
+				end
+			end
+			Ryan.payGasUsingCreditCard -> visa, netPrice, volumn : shell.receipt
+			Ryan.drive
+		end
+
+		if Ryan or Emma or Ellen is hungry
+			Ryan.stopCar
+			Loop
+				Ryan.findRestaurant -> szechuan
+				if szechuan is open
+					break
+				end
+			end
+			
+			Ryan.orderFood -> dishes
+			szechuan.cook -> dishes
+			Ryan and Emma and Ellen is eatingFood
+			szechuan.charge -> dishes : price
+			Ryan.payInCash
+		end
+
+		Ryan.drive -> mountainRainier
+
+		if mountainRainier.open
+			mountainRainier.charge -> ticketPrice
+			Ryan.payInCreditCard -> visa : chase.authorize
+			mountainRainier.authorize
+			Ryan and Emma and Ellen are hiking
+		else
+
+		end
+
+		if Internet.isAvailable
+			Ryan.searchInInternet -> internet, question : Collection of Hotel Website
+
+			pageNumber = 1;
+
+			Loop
+
+			if Ryan.findsNoPages
+				break
+			end
+			Ryan.findDesirableWebsiteInAPage -> internet, question, page Number : website
+			hiltonWebsite = website;
+			If hilton is not full
+				break
+			else
+				pageNumber = pageNumber + 1
+			end
+		end
+
+		Ryan.bookHotel -> location, price : hilton.confirmation
+		Ryan.checkIn -> hilton.checkID, hilton.provideRooms: rooms
+		Ryan.checkOut -> hilton.charge, cash : Ryan.payInCash
+			
+
+	else
+
+	end
+
+
+
+2. Organise a career fair(Suppose you are the organiser)
+
+	2.1 Reserve a place for career fair
+	2.2 Invite Companies to career fair through email
+	2.3 Invite students through email
+	2.4	Provide food and drinks
+
+Things:
+
+	Organiser:
+		Data: name, money, emailAddress
+		Behaviors: findPlaces, reserveAPlace, sendEmails, buyFoodAndDrink, cleanUp
+
+	CareerFair:
+		Data: location, date, time, foodAndDrink, campacity
+		Behaviors: open, close
+
+	Place:
+		Data: location, capacity, parkingGarage, status, date
+		Behaviors: reserved
+
+	Recruiter:
+		Data: name, company
+		Behavior: presentation, interview, eatAndDrink, recruiting
+
+	Company:
+		Data: name, positions, emailAddress, recruiter
+		Behaviors: confirm, register, attend
+
+	Students:
+		Data: name, resume, happy
+		Behaviors: confirm, register, dressed, talkToRecruiters, eatAndDrink, attend
+
+	Calendar:
+		Data: date, time
+
+
+Organise a career fair:
+
+	Calendar calendar
+	Organiser Ryan
+	Place center
+	CareerFair fair
+	Recruiter recruiter
+	Company[] company
+	Student[] student
+
+	Ryan.name = Ryan
+	Loop
+		Ryan.findPlaces
+		if center.capacity is greater than 1000 and has parkingGarage and center.status -> date : not Reserved
+			Ryan.reserveAPlace
+			center.reserved
+			fair.location = place.location
+			fair.date = place.date
+			break
+		end
+	end 
+
+	if center.status is reserved
+		Ryan.sendEmails -> date, location : company.emailAddress, student.emailAddress
+		if company.confirm
+			company.register -> confirmation
+			company.name = Amazon, google ... 
+		end
+
+		if student.confirm
+			student.register -> confirmation
+			student.name = student1, student2 ...
+		end
+	end
+
+	Ryan.buyFoodAndDrink
+
+	if Calendar.date = fair.date
+		careerfair.open
+		company.attend
+		student.attend
+		recruiter.presentation
+		if student has good resume and student is dressed
+			Loop
+				recruiter.interview 
+				student.talkToRecruiters
+
+				recruiter.eatAndDrink
+				student.eatAndDrink
+
+				if recruiter.recruiting -> student
+					student.happy
+
+				if calendar.time >= fair.time
+					break
+			end
+		else
+
+		end
+
+		fair.close
+		Ryan.cleanUp
+
+	end
+
+
+3. Order Pizza from Pizza Hut:
+
+	3.1 Consumer order the Pizza choose Topping online
+	3.2 Consumer pays for the pizza
+
+Things:
+
+	Consumer: 
+		Data: name, creditCard
+		Behaviors: comeTo, order, payPizzaUsingCreditCard, wait
+
+	Pizza: 
+		Data: size, toppings, price
+
+	CreditCard:
+		Data: bank, name, cardNumber, expirationDate, securityCode
+
+	CreditCardCompany:
+		Behavior : authorizeTransaction
+
+	Internet:
+		Data : groupOfWebsites
+		Behaviors : searchForPizzaHutWebsites 
+
+	ElectronicWebsite:
+		Data : URL, toppings, BankAccount
+		Behaviors : search, sort, display, compare, placeTheOrder
+
+Order Pizza from Pizza Hut:
+
+	Consumer Ryan
+	Pizza pizza
+	ElectronicWebsite pizzaHutWebsite
+	CreditCard visa
+	CreditCardCompany chase
+	Internet internet
+
+	if internet isAvaiable
+
+		Ryan.searchInInternet -> internet, question : Collection of ElectronicWebsite
+		pageNumber = 1;
+
+		Loop
+			if Ryan.findsNoPages
+				break
+			end
+			Ryan.findDesirableWebsiteInAPage -> internet, question, page Number : website
+			pizzaHutWebsite = website;
+			If pizzaHutWebsite is not empty
+				break
+			else
+				pageNumber = pageNumber + 1
+			end
+		end
+
+		pizzaHutWebsite = website
+		if pizzaHutWebsite is not empty or pizzaHutWebsite!=null
+			Ryan.order -> pizza.toppings, pizza.size : price
+			pizza = orderedPizza
+			Ryan.payPizzaUsingCreditCard-> visa : chase.authorizeTransaction and recepit
+
+		else
+			Ryan.cantBuyProduct
+	else
+		Ryan.browseInternetAfterAWhileBack
+
+
+4. Design a code sharing platform (eg: Github) :
+	
+Things:
+
+	CodeSharingPlatform:
+		Data: User, Server, Website
+		Behaviors: login, codeUpload, createRepos/deleteRepos, star/unstar
+
+	User:
+		Data: username, password, email, stars, repos, code
+			repos: 
+				Data: reposID
+				Behaviors: codeUpload/codeDownload, created/deleted
+
+		Behaviors:
+			1. signUp -> username, password, email
+
+			2. login -> username, password : login success/fail {
+				Server.authorization
+			}
+
+			3. createRepos/deleteRepos -> reposID : create/delete success/fail
+
+			4. stars/unstars -> reposID : star/unstar {
+				if star 
+					repos.star+1
+				if unstar
+					repos.star-1
+			}
+
+			5. codeUpload/codeDownload -> reposID, server.authorization
+
+
+	Websites:
+		Data: URL, requests
+		Behaviors:
+			1. sendRequests {
+				signUp, login, create/delete Repos, star/unstars, code upload/downloads
+			}
+
+			2. display {
+				userInfo, repoInfo
+			}
+
+	Server:
+		Data: address, name, database, capacity, status
+		Behaviors:
+
+			handleRequests -> requestsFromWebsite : pass/fail {
+				if data Stream larger than capacity
+					server.status = down
+				else
+					handle databaseInteraction, printLoggingFiles, authorization... 
+					return serverResponse
+			}
+
+
+5. Design a soft-drink/snacks vending machine.
+
+Things:
+
+	soft-drink/snacks vending machine:
+		Data: products, money, status, request
+			products: 
+				Data: productionID, price
+			money:
+				Data: cash, creditCard
+				Behaviors: authorization
+
+		Behaviors:
+			checkRequest -> request, productionID, money : product {
+				if money = cash
+					if cash >= production.price and product is not null
+						product.out
+						change.out
+					else
+						print "Insert More Money or product is sold out"
+					end
+
+				end
+
+				if money = creditCard
+					if authorization.success and product is not null
+						product.out
+					else
+						print "card is declined or product is sold out"
+					end
+				end
+			}
+
