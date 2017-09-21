@@ -9,8 +9,8 @@ public class Assignment2 {
 		//System.out.println(res);
 
 		//2.
-		//int res2 = new Assignment2().addDigits(12345);
-		//System.out.println(res2);
+		// int res2 = new Assignment2().addDigits(883);
+		// System.out.println(res2);
 
 		//3.
 		//new Assignment2().printPerfectNumbers(10000);
@@ -81,20 +81,26 @@ public class Assignment2 {
 		i. function takes an integer as input and returns its sum of digits.
 		ii. for example input = 37, sum = 3+7 = 10, sum = 1+0 = 1. result = 1.
 	*/
+
+	//Re-edited after class
 	public int addDigits(int input) {
-		//Recursion
 		if (input < 10) return input;
 
 		int temp = input;
 		int result = 0;
 
-		while (temp >= 10) {
+		while (temp > 0) {
 			result += temp%10;
 			temp /= 10;
 		}
-		result += temp;
 		
 		return addDigits(result);
+	}
+
+	public int addDigits2(int input) {
+		if (input == 0) return 0;
+	    else if (input % 9 == 0) return 9;
+	    else return input % 9;
 	}
 
 	/*
