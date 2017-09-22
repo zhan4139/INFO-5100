@@ -1,7 +1,7 @@
 /* Tingyuan ZHANG */
 /* Good Work
- * Score 9.5
- * your understanding on Data and behaviors is good. In pseudo code you are using 'Loop' without any condition.
+ * Score 10
+ * your understanding on Data and behaviors is good.
  */
 
 1. Hiking
