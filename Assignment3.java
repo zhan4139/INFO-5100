@@ -64,6 +64,7 @@ public class Assignment3 {
 	 */
 	public static boolean checkIfTwoStringAreAnagrams(String s1, String s2) {
 		if (s1.length() != s2.length()) return false;
+		if (s1.equals(s2)) return false; //based on Serena's requirement
 
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 		for (int i = 0; i < s1.length(); i++) {
