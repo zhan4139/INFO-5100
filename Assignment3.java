@@ -7,11 +7,11 @@ public class Assignment3 {
 		String s2 = removeVowelsFromString(s);
 		System.out.println(s2);
 
-		String str1 = "Damon Albarn", str2 = "Dan Abnormal";
+		String str1 = "Damon Albarn(", str2 = "Dan( Abnormal";
 		System.out.println(checkIfTwoStringAreAnagrams(str1, str2));
 
 		Calculator cal = new Calculator(15);
-		System.out.println(Arrays.toString(cal.solutionToQuadratic(1, 2, 2)));
+		System.out.println(Arrays.toString(cal.solutionToQuadratic(1, 3, 2)));
 	}
 
 	/**
@@ -64,8 +64,7 @@ public class Assignment3 {
 	 */
 	public static boolean checkIfTwoStringAreAnagrams(String s1, String s2) {
 		if (s1.length() != s2.length()) return false;
-		if (s1.equals(s2)) return false; //based on Serena's requirement
-
+		
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 		for (int i = 0; i < s1.length(); i++) {
 			char c1 = s1.charAt(i);
