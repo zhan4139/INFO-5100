@@ -1,3 +1,9 @@
+/* good work
+ * score 9.5 + extra credit 3.5; Total score 10
+ */
+
+
+
 /* Tingyuan ZHANG */
 import java.util.HashMap;
 
@@ -69,7 +75,8 @@ public class Assignment2 {
 		ii. The first 36 hours worked are paid at a rate of 15.0, then the next 5 hours 
 			are paid at a rate of 15 * 1.5. Hours after that up to a max of 48 are paid at a rate of 15 * 2.
 	*/
-	public double employeeSalary(double hours) {
+	// score 1.5
+	public double employeeSalary(double hours) { // for hours greater than 48, you should return the pay for 48 hrs.
 		if (hours <= 36) return hours * 15.0;
 		else if (hours <= 41) return 36 * 15 + (hours - 36) * 15 * 1.5;
 		else if (hours <= 48) return 36 * 15 + 5 * 15 * 1.5 + (hours - 41) * 15 * 2;
@@ -81,7 +88,7 @@ public class Assignment2 {
 		i. function takes an integer as input and returns its sum of digits.
 		ii. for example input = 37, sum = 3+7 = 10, sum = 1+0 = 1. result = 1.
 	*/
-
+	// score 2
 	//Re-edited after class
 	public int addDigits(int input) {
 		if (input < 10) return input;
@@ -109,6 +116,7 @@ public class Assignment2 {
 		ii. For example: 6 is the first perfect number, Proper divisors of 6 are 1, 2, 3. 
 			Sum of its proper divisors = 1 + 2 + 3 = 6.
 	*/
+	// score 2
 	public void printPerfectNumbers(int n) {
 		for (int i = 1; i < n; i++) {
 			int sum = 0; //for sum of divisors;
@@ -135,7 +143,8 @@ public class Assignment2 {
 	   *  *
 	   *   *
 	   ******
-	*/	
+	*/
+	// extra credit 2
 	public void printIsoscelesTriangle(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j <= i; j++) {
@@ -159,7 +168,7 @@ public class Assignment2 {
 		2. What is a pizza type? I used String as pizza types
 		3. Do I need getter and setters? I implemented getters and setters
 */
-
+// score 2 + extra credit 0.5
 class Pizza {
 	private String pizzaType;
 	private double unitPrice;
@@ -213,6 +222,7 @@ class Pizza {
 	To answer question ii, we can use a hashmap, pizza's name is key and number is value.
 	Alternatively, we can set Pizza object as a key, which is also working.
 */
+// score 2 + extra credit 1
 class Customer {
 	private String name;
 	private HashMap<String, Integer> orderedPizza;
