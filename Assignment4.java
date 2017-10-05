@@ -1,19 +1,52 @@
 public class Assignment4 {
 	public static void main(String[] args) {
+		//1.
+		String s1 = "2-4A0r7-4k";
+		String res = formatLicenseKey(s1, 3);
+		System.out.println(res);
+
 		//2.
 		Scissors s = new Scissors(5);
 		Paper p = new Paper(7);
 		Rock r = new Rock(15);
 
-		//System.out.println(r.fight(p));
 		System.out.println(s.fight(p) + " , " + p.fight(s));
 		System.out.println(p.fight(r) + " , " + r.fight(p));
 		System.out.println(r.fight(s) + " , " + s.fight(r));
+
+		//3.
+		IpAddress ip = new IpAddress("216.27.6.136");
+		System.out.println(ip.getDottedDecimal());
+		System.out.println(ip.getOctet(4));
+		System.out.println(ip.getOctet(1));
+		System.out.println(ip.getOctet(3));
+		System.out.println(ip.getOctet(2));
+
+		//4.
+		Course c = new Course("INFO 5100");
+		for (int i = 0; i < 10; i++) {
+			Student stu = new Student("s", String.valueOf(i));
+			c.registerStudent(stu);
+		}
+
+		System.out.println(c.getNumberOfStudent());
+		System.out.print("Student's ID are: " );
+		for (int i = 0; i < 10; i++)
+			System.out.print(c.getStudents()[i].getId() + " ");
+		System.out.println();		
+		c.registerStudent(new Student("s10", "10")); //can't register one more student
+
+		//Extra Point
+		int[] nums1 = {1, 2, 5, 6}, nums2 = {4};
+		double median = findMedianSortedArrays(nums1, nums2);
+		System.out.println(median);
+
 	}
 
 	//1. software license key modification
 	public static String formatLicenseKey(String s, int k) {
-		//StringBuilder sb = new StringBuilder();
+		//use StringBuilder is faster than do string addition,etc
+		if (s.length() == 0 || s == null) return "";
 		String res = "";
 		int count = 0;
 		for (int i = 0;i < s.length(); i++) {
@@ -23,27 +56,77 @@ public class Assignment4 {
 			}
 		} 
 
-		if (count <= k) return null;
+		if (count <= k) return "";
 
-		int hit = 0;
-		for (int i = res.length() - 1; i >=0; i--) {
-			if (hit != k) {
-				//sb.append(Character.toUpperCase(s.charAt(i)));
-				hit ++;
-			} 
+		for (int i = count - k - 1; i >=0 ; i-=k) {
+			if (i >= 0) {
+				res = res.substring(0, i + 1) + "-" + res.substring(i + 1);
+			}
 		}
 		return res;
 	}
 
-	//4. 
-
-
 	//5. 
-	public String intToRoman(int num) {
+	public static String intToRoman(int num) {
+		String[] romans = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+	    int[] value = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+	    int base = -1;
+	    StringBuilder result = new StringBuilder();
 
+	    for(int i = 0; i < romans.length; i++){
+	        if ((num / value[i]) != 0) {
+				base = num / value[i];
+	            while (base-- != 0) 
+	            	result.append(romans[i]);
+	            num %= value[i];
+	        }
+	    }
+	    return result.toString();
 	}
 
 	//Extra Credit
+	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+		//merge two sorted array, we have to allocate a new memory
+		//T = O(a + b), S = O(a + b)
+		//Could be solved in T = O(lgn) with S = O(1)
+		if (nums1 == null && nums2 == null 
+			|| nums1.length == 0 && nums2.length == 0) 
+			return Double.MIN_VALUE;
+
+		int a = nums1.length, b = nums2.length;
+		int[] total = new int[a + b];
+
+		int first = 0, second = 0, pos = 0;
+		while (first < a && second < b) {
+			if (nums1[first] <= nums2[second]) {
+				total[pos] = nums1[first];
+				first++;
+			} else if (nums1[first] > nums2[second]) {
+				total[pos] = nums2[second];
+				second++;
+			}
+			pos++;
+		}
+
+		if (first >= a)
+			for (; second < b; second++) {
+				total[pos++] = nums2[second];
+			}
+
+		if (second >= b)
+			for (; first < a; first++) {
+				total[pos++] = nums1[first];
+			}
+		
+		if (total.length % 2 == 0) 
+			return (double) (total[total.length/2] + total[(total.length - 1)/2]) / 2;
+		return total[total.length/2];
+	}
+
+	//Extra Cresit 2 
+	public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+
+	}
 }
 
 //2.
@@ -126,8 +209,103 @@ class Scissors extends Tool {
 
 //3. 
 class IpAddress {
+	private String dottedDecimal;
 
+	public IpAddress(String s) {
+		dottedDecimal = s;
+	}
+
+	public String getDottedDecimal() {
+		return this.dottedDecimal;
+	}
+
+	public int getOctet(int pos) {
+		String ip = this.dottedDecimal;
+		String res = "";
+		for (int i = 0; i <= pos - 1; i++) {
+			if (i == 3) res = ip.substring(0);
+			else {
+				int index = ip.indexOf(".");
+				res = ip.substring(0, index);
+				ip = ip.substring(index + 1);
+			}
+		}
+		return Integer.parseInt(res);
+	}
 }
 
+//4. 
+class Student {
+	private String name;
+	private String id;
 
+	public Student(String name, String id) {
+		this.name = name;
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+}
+
+class Course {
+	private static final int MAX_OF_STUDENT = 10;
+	private String title;
+	private Student[] students;
+	private int numberOfStudent;
+
+	public Course(String title) {
+		this.title = title;
+		numberOfStudent = 0;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Student[] getStudents() {
+		return students;
+	}
+
+	public int getNumberOfStudent() {
+		return numberOfStudent;
+	}
+
+	public boolean isFull() {
+		return numberOfStudent >= MAX_OF_STUDENT;
+	}
+
+	public void registerStudent(Student s) {
+		if (!isFull()) {
+			if (numberOfStudent == 0) {
+				students = new Student[]{s};
+				numberOfStudent++;
+			} else {
+				numberOfStudent++;
+				Student[] ns = new Student[numberOfStudent];
+				for (int i = 0; i < students.length; i++) {
+					ns[i] = students[i];
+				}
+				ns[numberOfStudent - 1] = s;
+				students = ns;
+			}
+		} else {
+			System.out.println("Course is full, you can not register!");
+		}
+	}
+
+}
 
