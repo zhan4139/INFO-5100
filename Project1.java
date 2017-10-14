@@ -14,10 +14,10 @@ public class Project1 {
 
 class Hangman {
 	private static final int MAX_GUESS = 8;
-	private List<String> words;//list of words that can be selected
-	private String selectedWord;//selected one
-	private List<Character> correctList;//list for storing correct characters in lowercase
-	private List<Character> wrongList;////list for storing wrong characters in lowercase
+	private List<String> words; //list of words that can be selected
+	private String selectedWord; //selected one
+	private List<Character> correctList; //list for storing correct characters in lowercase
+	private List<Character> wrongList; //list for storing wrong characters in lowercase
 
 	//constructor, here we think the list's default size and each word's size is greather than 0, 
 	//	otherwise it doesn't make sense
@@ -56,7 +56,7 @@ class Hangman {
 			charSet.add(Character.toLowerCase(selectedWord.charAt(i)));
 		} 
 
-		System.out.print("\033[H\033[2J");
+		System.out.print("\033[H\033[2J"); //clear the console and redisplay after each guess
 		System.out.flush();
 
 		if (charSet.contains(inputChar) && !correctList.contains(inputChar)) {
