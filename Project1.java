@@ -34,11 +34,11 @@ class Hangman {
 	}
 
 	//1. Handle system.in, the input character can be upper case or lower case,
-	//		I will automatically change it to lower case using toLowerCase(), but the length should be 1
+	//	I will automatically change it to lower case using toLowerCase(), but the length should be 1
 	//2. I used a hashset for storing selected word's characters, to make sure each valid guess will be
-	//		used only once. 
+	//	used only once. 
 	//3. Add correct character into correctList and wrong one to wrongList, make sure when add to correctList
-	//		there is no same one already in the list
+	//	there is no same one already in the list
 	public void handleGuess() {
 		Scanner sc = new Scanner(System.in);
 		String input = sc.next();
