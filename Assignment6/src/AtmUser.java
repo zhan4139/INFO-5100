@@ -1,6 +1,3 @@
-/**
- * Created by tingyuanzhang on 20/10/2017.
- */
 public class AtmUser extends User {
     private double availableBalance;
     private String password;

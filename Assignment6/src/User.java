@@ -1,8 +1,5 @@
 import java.io.Serializable;
 
-/**
- * Created by tingyuanzhang on 18/10/2017.
- */
 public class User implements Serializable {
 
     private String name;
