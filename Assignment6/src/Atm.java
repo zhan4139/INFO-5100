@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -125,9 +124,5 @@ public class Atm {
     public File getUserData() {
         return userData;
     }
-=======
-public class Atm {
-    private double availableAmountInMachine;
-    private double transactionFee;
->>>>>>> 6d25ce536a3241944f961b4a22705387c3eddc92
+
 }
