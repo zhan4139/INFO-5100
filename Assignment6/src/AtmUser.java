@@ -5,7 +5,7 @@ public class AtmUser extends User {
     public AtmUser(String name, int age, String address, String phoneNumber,
                    String bankAccountNumber, double availableBalance, String password) {
         super(name, age, address, phoneNumber, bankAccountNumber);
-        availableBalance = 0.0;
+        this.availableBalance = availableBalance;
         this.password = password;
     }
 
