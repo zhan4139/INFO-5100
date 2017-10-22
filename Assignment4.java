@@ -1,11 +1,13 @@
 public class Assignment4 {
 	public static void main(String[] args) {
 		//1.
+		System.out.println("P1.----------------------------");
 		String s1 = "2-4A0r7-4k";
 		String res = formatLicenseKey(s1, 3);
 		System.out.println(res);
 
 		//2.
+		System.out.println("P2.----------------------------");
 		Scissors s = new Scissors(5);
 		Paper p = new Paper(7);
 		Rock r = new Rock(15);
@@ -15,6 +17,7 @@ public class Assignment4 {
 		System.out.println(r.fight(s) + " , " + s.fight(r));
 
 		//3.
+		System.out.println("P3.----------------------------");
 		IpAddress ip = new IpAddress("216.27.6.136");
 		System.out.println(ip.getDottedDecimal());
 		System.out.println(ip.getOctet(4));
@@ -23,12 +26,14 @@ public class Assignment4 {
 		System.out.println(ip.getOctet(2));
 
 		//4.
+		System.out.println("P4.----------------------------");
 		Course c = new Course("INFO 5100");
 		for (int i = 0; i < 10; i++) {
 			Student stu = new Student("s", String.valueOf(i));
 			c.registerStudent(stu);
 		}
 
+		System.out.println(c.getTitle());
 		System.out.println(c.getNumberOfStudent());
 		System.out.print("Student's ID are: " );
 		for (int i = 0; i < 10; i++)
@@ -36,7 +41,13 @@ public class Assignment4 {
 		System.out.println();		
 		c.registerStudent(new Student("s10", "10")); //can't register one more student
 
+		//5.
+		System.out.println("P5.----------------------------");
+		int p5 = 2560;
+		System.out.println(intToRoman(p5));
+
 		//Extra Point
+		System.out.println("ExtraCredit.-------------------");
 		int[] nums1 = {1, 2, 5, 6}, nums2 = {4};
 		double median = findMedianSortedArrays(nums1, nums2);
 		System.out.println(median);
@@ -107,7 +118,7 @@ public class Assignment4 {
 			}
 			pos++;
 		}
-
+		//check pos is median pos of array could save some time but still O(n)
 		if (first >= a)
 			for (; second < b; second++) {
 				total[pos++] = nums2[second];
@@ -123,9 +134,27 @@ public class Assignment4 {
 		return total[total.length/2];
 	}
 
-	//Extra Cresit 2 
-	public static double findMedianSortedArrays2(int[] nums1, int[] nums2) {
+	//Extra Cresit 2 O(lgn)
+	public double findMedianSortedArrays2(int[] A, int[] B) {
+	    int m = A.length, n = B.length;
+	    int l = (m + n + 1) / 2;
+	    int r = (m + n + 2) / 2;
+	    return (getkth(A, 0, B, 0, l) + getkth(A, 0, B, 0, r)) / 2.0;
+	}
 
+	public double getkth(int[] A, int aStart, int[] B, int bStart, int k) {
+		if (aStart > A.length - 1) return B[bStart + k - 1];            
+		if (bStart > B.length - 1) return A[aStart + k - 1];                
+		if (k == 1) return Math.min(A[aStart], B[bStart]);
+		
+		int aMid = Integer.MAX_VALUE, bMid = Integer.MAX_VALUE;
+		if (aStart + k/2 - 1 < A.length) aMid = A[aStart + k/2 - 1]; 
+		if (bStart + k/2 - 1 < B.length) bMid = B[bStart + k/2 - 1];        
+		
+		if (aMid < bMid) 
+		    return getkth(A, aStart + k/2, B, bStart,       k - k/2);// Check: aRight + bLeft 
+		else 
+		    return getkth(A, aStart,       B, bStart + k/2, k - k/2);// Check: bRight + aLeft
 	}
 }
 
@@ -306,6 +335,5 @@ class Course {
 			System.out.println("Course is full, you can not register!");
 		}
 	}
-
 }
 

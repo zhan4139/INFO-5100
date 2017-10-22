@@ -1,3 +1,6 @@
+/* Good Work
+ * Score 9.5 + extra credit 2; Total score 10
+ */
 import java.lang.*;
 import java.util.*;
 
@@ -15,7 +18,7 @@ public class Assignment3 {
 	}
 
 	/**
-	 *	Q1.
+	 *	Q1. // score 1
 	 *	1. The first constructor and third constructor have conflict.
 	 *	2. The second constructor is calling super() which refers to Book's 
 	 *		parent class Object's constructor, which I don't think it is necessary now, 
@@ -25,7 +28,7 @@ public class Assignment3 {
 	 */
 
 	/**
-	 *	Q2.
+	 *	Q2. // score 1
 	 *	1. The getTime method should be String instead of void since it return a string time.	
 	 *	2. No constructor
 	 */
@@ -35,7 +38,7 @@ public class Assignment3 {
 	 *	@param input It is the string with vowels
 	 *	@return a string without vowels
 	 */
-	public static String removeVowelsFromString(String input) {
+	public static String removeVowelsFromString(String input) { // score 1.5
 		StringBuffer result = new StringBuffer();
 		char[] temp = input.toCharArray();
 
@@ -48,7 +51,7 @@ public class Assignment3 {
 		return result.toString();
 	}
 
-	private static boolean isVowel(char c) {
+	private static boolean isVowel(char c) { // have to consider upper case also
 		char[] vowels = {'a', 'e', 'i', 'o', 'u'};
 		for (int i = 0; i < vowels.length; i++) {
 			if (Character.toLowerCase(c) == vowels[i])
@@ -62,7 +65,7 @@ public class Assignment3 {
 	 *	@param s1 s2 are two input strings
 	 *	@return true if they are Anagrams else false
 	 */
-	public static boolean checkIfTwoStringAreAnagrams(String s1, String s2) {
+	public static boolean checkIfTwoStringAreAnagrams(String s1, String s2) { // score 2
 		if (s1.length() != s2.length()) return false;
 		
 		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
@@ -93,7 +96,7 @@ public class Assignment3 {
  *	2. Perform squareRoot, square, cube
  *	3. Convert Fahrenheit-Celsius, Feet-Inches
  */	
-class Calculator{
+class Calculator{ // score 4 + extra credit 2
 	private double number;
 
 	public Calculator() {
