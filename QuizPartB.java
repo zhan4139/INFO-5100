@@ -19,9 +19,9 @@ public class QuizPartB {
 		//5.
 		List<Cell> res = new ArrayList<>();
 		int[][] maze = {
-			{1, 0, 0, 0},
+			{1, 1, 0, 0},
 			{1, 1, 1, 1},
-			{0, 1, 0, 0},
+			{1, 1, 0, 0},
 			{1, 1, 1, 1}
 		};
 
@@ -137,7 +137,7 @@ public class QuizPartB {
 		//temp is for all paths and res is the result list, i stands for rows and j stands for cols
 		if (i >= maze.length || j >= maze[0].length || maze[i][j] == 0) return;
 
-		if (i == maze.length - 1 && j == maze[0].length - 1) {
+		if (i == maze.length - 1 && j == maze[0].length - 1 && res.isEmpty()) {//only add one time and return one path
 			temp.add(new Cell(i, j));
 			for (Cell cell : temp) {//copy the path to result list
 				res.add(cell);
@@ -151,7 +151,6 @@ public class QuizPartB {
 		findPath(res, temp, maze, i, j + 1);//go down
 		
 	}
-	
 } 
 
 class Cell {
