@@ -140,8 +140,8 @@ public class QuizPartB {
 		if (i == maze.length - 1 && j == maze[0].length - 1) {
 			temp.add(new Cell(i, j));
 			for (Cell cell : temp) {//copy the path to result list
-                res.add(cell);
-            }
+				res.add(cell);
+			}
 			return;
 		}
 		
