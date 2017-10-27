@@ -1,6 +1,3 @@
-/**
- * Created by tingyuanzhang on 20/10/2017.
- */
 public class AtmUser extends User {
     private double availableBalance;
     private String password;
@@ -8,7 +5,7 @@ public class AtmUser extends User {
     public AtmUser(String name, int age, String address, String phoneNumber,
                    String bankAccountNumber, double availableBalance, String password) {
         super(name, age, address, phoneNumber, bankAccountNumber);
-        availableBalance = 0.0;
+        this.availableBalance = availableBalance;
         this.password = password;
     }
 
