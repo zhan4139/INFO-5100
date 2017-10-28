@@ -34,7 +34,7 @@ public class QuizPartB {
 	}
 
 	//1. Reverse Even Indices
-	public static int[] reverseEvenIndices(int[] nums) {
+	public static int[] reverseEvenIndices(int[] nums) { // score 6
 		int[] res = nums.clone();
 		if (nums == null || nums.length <= 2) return res;
 		
@@ -57,7 +57,7 @@ public class QuizPartB {
 	}
 
 	//2. Arrange coins in stair shape
-	public static int arrangeCoins(int n) {
+	public static int arrangeCoins(int n) { // score 7
 		if (n <= 0) return 0;
 		
 		int level = 0;
@@ -70,7 +70,7 @@ public class QuizPartB {
 	}
 
 	//3. Minimum moves to make all elements equal
-	public static int minMoves(int[] nums) {
+	public static int minMoves(int[] nums) { // score 7
 		if (nums == null || nums.length == 0) return 0;
 
 		//increment 1 for n - 1 numbers is the same as decrement 1 for 1 number
@@ -96,7 +96,7 @@ public class QuizPartB {
 
 	//4. Count ways of throwing n dices with m faces that sum to x
 	//E.g. 3 dices with 2 faces has 3 ways sum to 4 ([2, 1, 1], [1, 1, 2], [1, 2, 1])
-	public static int countNumberOfPossibleWays(int m, int n, int x) {
+	public static int countNumberOfPossibleWays(int m, int n, int x) { // score 10
 		//Since the problems find n dices sums to x can be 
 		//divided to subporblems find n - 1 problems sums to (x - (1~m))
 		//Then each sub problems can be calculated by its subprob till 1 dice sum to 1 with 1 faces value 1
@@ -126,7 +126,14 @@ public class QuizPartB {
 
 	//5. Extra Credit
 	//Using backtracking
-	public static ArrayList<Cell> findPath(int[][] maze) {
+	/* for input = { {1,1,0,1,0},
+                         {1,1,1,1,1},
+                         {1,0,0,1,0},
+                         {1,1,0,1,1}};
+	     expected output = [[0, 0], [1, 0], [1, 1], [1, 2], [1, 3], [2, 3], [3, 3], [3, 4]]
+	     your output     = [[0, 0], [1, 0], [2, 0], [3, 0], [3, 1], [1, 1], [1, 2], [1, 3], [2, 3], [3, 3], [3, 4]]
+	*/
+	public static ArrayList<Cell> findPath(int[][] maze) { // 5
 		ArrayList<Cell> res = new ArrayList<>();
 		if (maze == null || maze.length <= 0) return res;
 		findPath(res, new ArrayList<Cell>(), maze, 0, 0);
