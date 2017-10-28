@@ -133,7 +133,7 @@ public class QuizPartB {
 	     expected output = [[0, 0], [1, 0], [1, 1], [1, 2], [1, 3], [2, 3], [3, 3], [3, 4]]
 	     your output     = [[0, 0], [1, 0], [2, 0], [3, 0], [3, 1], [1, 1], [1, 2], [1, 3], [2, 3], [3, 3], [3, 4]]
 	*/
-	public static ArrayList<Cell> findPath(int[][] maze) { // 5
+	public static ArrayList<Cell> findPath(int[][] maze) { // 9
 		ArrayList<Cell> res = new ArrayList<>();
 		if (maze == null || maze.length <= 0) return res;
 		findPath(res, new ArrayList<Cell>(), maze, 0, 0);
