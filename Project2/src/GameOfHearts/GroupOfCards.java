@@ -17,16 +17,12 @@ public class GroupOfCards {
 	}
 
 	public Card removeCard(int index) {
-		if (index <= currentSize) {
-			Card removed = cards[index];
-			for (int i = index; i > 0; i--) {
-				cards[i] = cards[i - 1];
-			}
-			cards[currentSize - 1] = null;
-			currentSize--;
-			return removed;
+		Card card = this.getCard(index);
+		for (int i = index; i < this.getCurrentSize() - 1; i++) {
+			this.cards[i] = this.cards[i + 1];
 		}
-		return null;
+		this.setCurrentSize(this.getCurrentSize() - 1);
+		return card;
 
 	}
 
@@ -38,10 +34,6 @@ public class GroupOfCards {
 
 	public Card getCard(int i) {
 		return cards[i];
-	}
-
-	public void setCards(Card[] cards) {
-		this.cards = cards;
 	}
 
 	public int getCurrentSize() {

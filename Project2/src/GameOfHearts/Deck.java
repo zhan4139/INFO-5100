@@ -14,12 +14,12 @@ public class Deck extends GroupOfCards {
 	}
 
 	public void shuffle() {
-		int unshuffle = TOTAL_CARDS;
-		for (int i = 0; i < TOTAL_CARDS; i++) {
-			int index = (int) Math.random() * unshuffle;
-			Card card = super.removeCard(index);
-			super.addCard(card);
-			unshuffle--;
+		int unshuffled = this.getCurrentSize();
+		while (unshuffled > 0) {
+			int index = (int) (Math.random() * unshuffled);
+			Card card = this.removeCard(index);
+			this.addCard(card);
+			unshuffled--;
 		}
 	}
 

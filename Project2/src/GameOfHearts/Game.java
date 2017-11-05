@@ -34,7 +34,7 @@ public class Game {
 
 	public void playAGame() {
 		deck.shuffle();
-
+		
 		for (int i = 0; i < 52 / PLAYERS; i++) {
 			for (int j = 0; j < PLAYERS; j++) {
 				Card nextCard = deck.dealCard();
@@ -48,10 +48,12 @@ public class Game {
 		}
 
 		// First Part
+		System.out.println("Output – first part:");
+		System.out.println();
 		int minNum = Integer.MAX_VALUE;
 		int playerNum = 0;
 		for (int i = 0; i < PLAYERS; i++) {
-			System.out.println("Player " + i + " shortest = " + players[i].getShortest());
+			System.out.println("        Player " + i + " shortest = " + players[i].getShortest());
 			for (int j = 0; j < players[i].getCurrentSize(); j++) {
 				players[i].getCard(j).display();
 				if (players[i].getCard(j).getSuit() == 0) {
@@ -64,6 +66,9 @@ public class Game {
 		}
 
 		// Second Part
+		System.out.println();
+		System.out.println("Output – second part:  ");
+		System.out.println();
 		int left = 52 % PLAYERS;
 		for (int i = 0; i < tricks.length; i++) {
 			tricks[i] = new Trick(PLAYERS);
@@ -88,7 +93,7 @@ public class Game {
 					Card card = deck.dealCard();
 					tricks[i].addCard(card);
 					updateHeartsAndQueen(card);
-					System.out.print("Undelt Card " + playerNum + "     ");
+					System.out.print("Undelt Card   ");
 					card.display();
 				}
 			}
