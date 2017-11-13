@@ -55,7 +55,7 @@ public class Assignment4 {
 	}
 
 	//1. software license key modification
-	public static String formatLicenseKey(String s, int k) {
+	public static String formatLicenseKey(String s, int k) { // score 2
 		//use StringBuilder is faster than do string addition,etc
 		if (s.length() == 0 || s == null) return "";
 		String res = "";
@@ -78,7 +78,7 @@ public class Assignment4 {
 	}
 
 	//5. 
-	public static String intToRoman(int num) {
+	public static String intToRoman(int num) { // score 2
 		String[] romans = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
 	    int[] value = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
 	    int base = -1;
@@ -96,7 +96,7 @@ public class Assignment4 {
 	}
 
 	//Extra Credit
-	public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+	public static double findMedianSortedArrays(int[] nums1, int[] nums2) { // extra credit 2
 		//merge two sorted array, we have to allocate a new memory
 		//T = O(a + b), S = O(a + b)
 		//Could be solved in T = O(lgn) with S = O(1)
@@ -159,7 +159,7 @@ public class Assignment4 {
 }
 
 //2.
-class Tool {
+class Tool { // score 2
 	private int strength;
 	private char type;
 
@@ -237,7 +237,7 @@ class Scissors extends Tool {
 }
 
 //3. 
-class IpAddress {
+class IpAddress { // score 2
 	private String dottedDecimal;
 
 	public IpAddress(String s) {
@@ -290,7 +290,7 @@ class Student {
 	}
 }
 
-class Course {
+class Course { // score 2
 	private static final int MAX_OF_STUDENT = 10;
 	private String title;
 	private Student[] students;
