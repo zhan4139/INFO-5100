@@ -57,7 +57,7 @@ public class Checkout {
                     , name, DessertShoppe.cents2dollarsAndCentsmethod(cost));
 
             if (item instanceof Candy) {
-                receipt.append(((Candy) item).getWeight()).append(" lbs. @ ")
+                receipt.append(((Candy) item).getWeight()).append(" lbs. @ ")// in the display the weight is not formatted
                         .append(DessertShoppe.cents2dollarsAndCentsmethod(((Candy) item).getUnitPrice()))
                         .append(" /lb.\n");
             } else if (item instanceof Cookie) {
