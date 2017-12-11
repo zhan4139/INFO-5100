@@ -4,7 +4,7 @@ import java.io.File;
 
 public class Assignment6_p1p2 {
 	//2.
-	public static void parse(File file) {
+	public static void parse(File file) { // score 1
 		RandomAccessFile input = null;
 		String line = null;
 
@@ -30,7 +30,7 @@ public class Assignment6_p1p2 {
 }
 
 //1.
-class MyIndexOutOfBoundException extends Exception {
+class MyIndexOutOfBoundException extends Exception { // score 2
 	private int index;
 	private int lowerBound;
 	private int upperBound;
