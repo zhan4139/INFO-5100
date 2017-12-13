@@ -1,9 +1,9 @@
 import java.util.Random;
 
-public class MaxValue extends Thread {
+public class MaxValue extends Thread { // score 1.5
 	private int lo, hi;
 	private int[] arr;
-	private int max = 0;
+	private int max = 0; // Integer.MAX_VALUE
 	
 	public MaxValue(int[] arr, int lo, int hi) {
 		this.arr = arr;
