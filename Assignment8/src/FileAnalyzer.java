@@ -19,7 +19,7 @@ public class FileAnalyzer {
 	}
 }
 
-class FileCounter {
+class FileCounter { // score 3
 
 	private int characterCount, wordCount, lineCount;
 
