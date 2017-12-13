@@ -1,5 +1,5 @@
 
-public class ReverseHello extends Thread {
+public class ReverseHello extends Thread { // score 2
 	private int threadNum = 0;
 	public ReverseHello() {}
 	public ReverseHello(int num) {
