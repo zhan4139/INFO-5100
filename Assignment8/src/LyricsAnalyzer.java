@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-public class LyricsAnalyzer {
+public class LyricsAnalyzer { // score 4
 	//For testing
 //	public static void main(String[] args) throws IOException {
 //		File name = new File("data/Question2_test4.txt");
