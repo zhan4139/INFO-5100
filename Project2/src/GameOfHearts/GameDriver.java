@@ -1,3 +1,7 @@
+/* Good Work
+ * score 19
+ * you are not setting spades as shortest if they are equal or less than diamonds and clubs and don't contains ACE or KING or QUEEN. check the requirements
+ */
 package GameOfHearts;
 
 import java.util.Scanner;
